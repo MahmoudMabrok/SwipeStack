@@ -52,9 +52,13 @@ Create an adapter which holds the data and creates the views for the stack.
 public class SwipeStackAdapter extends BaseAdapter {
 
     private List<String> mData;
-
-    public SwipeStackAdapter(List<String> data) {
+    Context context ;
+    LayoutInflater mInflater ;
+ 
+    public SwipeStackAdapter(Context context , List<String> data) {
         this.mData = data;
+        this.context = context ;
+        mInflater = LayoutInflater.from(context) ;
     }
 
     @Override
@@ -74,7 +78,7 @@ public class SwipeStackAdapter extends BaseAdapter {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        convertView = getLayoutInflater().inflate(R.layout.card, parent, false);
+        convertView = mInflater.inflate(R.layout.card, parent, false);
         TextView textViewCard = (TextView) convertView.findViewById(R.id.textViewCard);
         textViewCard.setText(mData.get(position));
 
